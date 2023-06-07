@@ -1,6 +1,6 @@
 ﻿namespace TodoList;
 
-partial class CreateTodoForm
+partial class UpsertTodoForm
 {
     /// <summary>
     /// Required designer variable.
@@ -29,7 +29,7 @@ partial class CreateTodoForm
     private void InitializeComponent()
     {
         TodoTypeCombobox = new ComboBox();
-        label1 = new Label();
+        TitleLabel = new Label();
         label2 = new Label();
         label3 = new Label();
         TodoTitleTextbox = new TextBox();
@@ -39,7 +39,7 @@ partial class CreateTodoForm
         panel1 = new Panel();
         AdditionalTextbox = new TextBox();
         AdditionalLabel = new Label();
-        CreateTodoButton = new Button();
+        ActionButton = new Button();
         PricePanel = new Panel();
         PriceNumeric = new NumericUpDown();
         label6 = new Label();
@@ -62,15 +62,15 @@ partial class CreateTodoForm
         TodoTypeCombobox.TabIndex = 0;
         TodoTypeCombobox.SelectedIndexChanged += TodoTypeCombobox_SelectedIndexChanged;
         // 
-        // label1
+        // TitleLabel
         // 
-        label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
-        label1.Location = new Point(36, 18);
-        label1.Name = "label1";
-        label1.Size = new Size(288, 54);
-        label1.TabIndex = 1;
-        label1.Text = "Stwórz zadanie";
+        TitleLabel.AutoSize = true;
+        TitleLabel.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        TitleLabel.Location = new Point(36, 18);
+        TitleLabel.Name = "TitleLabel";
+        TitleLabel.Size = new Size(288, 54);
+        TitleLabel.TabIndex = 1;
+        TitleLabel.Text = "Stwórz zadanie";
         // 
         // label2
         // 
@@ -161,16 +161,16 @@ partial class CreateTodoForm
         AdditionalLabel.TabIndex = 10;
         AdditionalLabel.Text = "Nazwa firmy";
         // 
-        // CreateTodoButton
+        // ActionButton
         // 
-        CreateTodoButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-        CreateTodoButton.Location = new Point(36, 477);
-        CreateTodoButton.Name = "CreateTodoButton";
-        CreateTodoButton.Size = new Size(327, 43);
-        CreateTodoButton.TabIndex = 6;
-        CreateTodoButton.Text = "Stwórz";
-        CreateTodoButton.UseVisualStyleBackColor = true;
-        CreateTodoButton.Click += CreateTodoButton_Click;
+        ActionButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+        ActionButton.Location = new Point(36, 477);
+        ActionButton.Name = "ActionButton";
+        ActionButton.Size = new Size(327, 43);
+        ActionButton.TabIndex = 6;
+        ActionButton.Text = "Stwórz";
+        ActionButton.UseVisualStyleBackColor = true;
+        ActionButton.Click += ActionButton_Click;
         // 
         // PricePanel
         // 
@@ -231,12 +231,12 @@ partial class CreateTodoForm
         Controls.Add(AdditionalPanel);
         Controls.Add(label8);
         Controls.Add(PricePanel);
-        Controls.Add(CreateTodoButton);
+        Controls.Add(ActionButton);
         Controls.Add(label4);
         Controls.Add(TodoTitleTextbox);
         Controls.Add(label3);
         Controls.Add(label2);
-        Controls.Add(label1);
+        Controls.Add(TitleLabel);
         Controls.Add(TodoTypeCombobox);
         Name = "CreateTodoForm";
         Text = "CreateTodoForm";
@@ -254,7 +254,7 @@ partial class CreateTodoForm
     #endregion
 
     private ComboBox TodoTypeCombobox;
-    private Label label1;
+    private Label TitleLabel;
     private Label label2;
     private Label label3;
     private TextBox TodoTitleTextbox;
@@ -264,7 +264,7 @@ partial class CreateTodoForm
     private Panel panel1;
     private TextBox AdditionalTextbox;
     private Label AdditionalLabel;
-    private Button CreateTodoButton;
+    private Button ActionButton;
     private Panel PricePanel;
     private NumericUpDown PriceNumeric;
     private Label label6;

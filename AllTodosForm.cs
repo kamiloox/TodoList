@@ -15,7 +15,7 @@ public partial class AllTodosForm : Form
         TodosListView.Columns.AddRange(new ColumnHeader[] { IdColumn, TitleColumn, CompletedColumn });
     }
 
-    private ListViewItem GetCommonViewItem(Todo todo) 
+    private ListViewItem GetCommonViewItem(Todo todo)
     {
         var item = new ListViewItem(todo.Id);
 
@@ -100,13 +100,17 @@ public partial class AllTodosForm : Form
         return (TodoType)TodoTypeCombobox.SelectedIndex;
     }
 
-
-    private void TodosListView_SelectedIndexChanged(object sender, EventArgs e)
-    {
-    }
-
     private void TodoTypeCombobox_SelectedIndexChanged(object sender, EventArgs e)
     {
         RenderTodos(GetSelectedTodoType());
+    }
+
+    private void TodosListView_Click(object sender, EventArgs e)
+    {
+        var selectedTodoType = GetSelectedTodoType();
+
+        var id = TodosListView.SelectedItems[0].Text;
+        var form = new UpsertTodoForm(id, selectedTodoType, () => RenderTodos(selectedTodoType));
+        form.Show();
     }
 }

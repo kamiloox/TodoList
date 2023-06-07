@@ -41,14 +41,19 @@
             // 
             // TodosListView
             // 
+            TodosListView.Activation = ItemActivation.OneClick;
+            TodosListView.Cursor = Cursors.Hand;
             TodosListView.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            TodosListView.FullRowSelect = true;
+            TodosListView.GridLines = true;
+            TodosListView.HoverSelection = true;
             TodosListView.Location = new Point(42, 214);
             TodosListView.Name = "TodosListView";
             TodosListView.Size = new Size(646, 231);
             TodosListView.TabIndex = 0;
             TodosListView.UseCompatibleStateImageBehavior = false;
             TodosListView.View = View.Details;
-            TodosListView.SelectedIndexChanged += TodosListView_SelectedIndexChanged;
+            TodosListView.Click += TodosListView_Click;
             // 
             // IdColumn
             // 
@@ -115,7 +120,7 @@
             Controls.Add(TodoTypeCombobox);
             Controls.Add(TodosListView);
             Name = "AllTodosForm";
-            Text = "ShowTodosForm";
+            Text = "Przeglądaj zadania";
             ResumeLayout(false);
             PerformLayout();
         }

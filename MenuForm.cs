@@ -9,7 +9,7 @@ public partial class MenuForm : Form
 
     public void CreateTodoButton_Click(object sender, EventArgs e)
     {
-        var createTodoForm = new CreateTodoForm();
+        var createTodoForm = new UpsertTodoForm();
         createTodoForm.Show();
     }
 
