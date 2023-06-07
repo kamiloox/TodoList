@@ -1,12 +1,14 @@
 ﻿namespace TodoList;
 
-interface ITodoMethods<T>
+interface ITodoMethods<TodoType>
 {
     void UpdateInDb();
 
-    public string GetInfo();
+    string GetInfo();
 
-    static public List<T> GetAllFromDb() => throw new NotImplementedException();
+    static public List<TodoType> GetAllFromDb() => throw new NotImplementedException();
 
-    static public T? GetFromDb(string id) => throw new NotImplementedException();
+    static public TodoType? GetFromDb(string id) => throw new NotImplementedException();
+
+    static public void RemoveFromDb(string id) => throw new NotImplementedException();
 }

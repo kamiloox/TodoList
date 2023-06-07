@@ -2,7 +2,7 @@
 
 public enum TodoType
 {
-    SHOPPING = 0,
-    SCHOOL = 1,
-    WORK = 2,
+    SHOPPING,
+    SCHOOL,
+    WORK,
 }

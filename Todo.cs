@@ -39,7 +39,7 @@ class Todo
         return $"Id: {Id}\nTytuł: {Title}\nUkończono: {completedText}";
     }
 
-    private void CreateTableIfNotExists(string tableName, string[] fields)
+    private static void CreateTableIfNotExists(string tableName, string[] fields)
     {
         string[] commonFields =
         {
@@ -117,8 +117,15 @@ class Todo
     {
         var query = $"SELECT * FROM {tableName}";
 
-        var parameters = new { tableName };
+        return Database.Action((connection) => connection.Query<TodoModel>(query).ToList());
+    }
 
-        return Database.Action((connection) => connection.Query<TodoModel>(query, parameters).ToList());
+    static protected void DeleteFromDb(string tableName, string todoId)
+    {
+        var query = $"DELETE FROM {tableName} WHERE Id = @Id";
+
+        var parameters = new { Id = todoId };
+
+        Database.Action((connection) => connection.Query(query, parameters));
     }
 }

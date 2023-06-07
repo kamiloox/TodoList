@@ -59,6 +59,11 @@ class TodoWork : Todo, ITodoMethods<TodoWork>
         );
     }
 
+    static public void DeleteFromDb(string id)
+    {
+        DeleteFromDb(TableName, id);
+    }
+
     static public List<TodoWork> GetAllFromDb()
     {
         return GetAllFromDb<TodoWorkModel>(TableName)

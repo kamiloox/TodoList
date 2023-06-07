@@ -43,6 +43,8 @@ public partial class UpsertTodoForm : Form
         TodoTypeCombobox.Enabled = false;
 
         ActionButton.Text = "Edytuj";
+
+        DeleteButton.Visible = true;
     }
 
     public UpsertTodoForm()
@@ -130,7 +132,8 @@ public partial class UpsertTodoForm : Form
                 EditTodo();
                 OnSubmitFunction();
                 Close();
-            } catch(Exception exception)
+            }
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.ToString());
                 MessageBox.Show("Nieoczekiwany błąd. Edycja zadania się nie powiodła, spróbuj jeszcze raz");
@@ -207,7 +210,7 @@ public partial class UpsertTodoForm : Form
         }
     }
 
-    private void ShowCreatedTodoInfo(string info)
+    private static void ShowCreatedTodoInfo(string info)
     {
         MessageBox.Show($"Stworzono zadanie\n\n{info}");
     }
@@ -253,5 +256,45 @@ public partial class UpsertTodoForm : Form
     {
         AdditionalPanel.Show();
         AdditionalLabel.Text = "Nazwa przedmiotu";
+    }
+
+    private void DeleteTodo()
+    {
+        if (TodoId is null)
+        {
+            throw new Exception("TodoId Cannot be null when editing todo");
+        }
+
+        switch (GetSelectedTodoType())
+        {
+            case TodoType.SHOPPING:
+                TodoShopping.DeleteFromDb(TodoId);
+                break;
+            case TodoType.WORK:
+                TodoWork.DeleteFromDb(TodoId);
+                break;
+            case TodoType.SCHOOL:
+                TodoSchool.DeleteFromDb(TodoId);
+                break;
+            default:
+                throw new Exception("Unknown TodoType");
+        }
+    }
+
+    private void DeleteButton_Click(object sender, EventArgs e)
+    {
+        if (OnSubmitFunction is null)
+        {
+            throw new Exception("OnSubmitFunction cannot be null when editing form");
+        }
+
+        var result = MessageBox.Show("Czy jesteś pewny, że chcesz usunąć?", "Potwierdź", MessageBoxButtons.YesNo);
+
+        if (result == DialogResult.Yes)
+        {
+            DeleteTodo();
+            OnSubmitFunction();
+            Close();
+        }
     }
 }

@@ -45,6 +45,7 @@ partial class UpsertTodoForm
         label6 = new Label();
         label8 = new Label();
         AdditionalPanel = new Panel();
+        DeleteButton = new Button();
         panel1.SuspendLayout();
         PricePanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)PriceNumeric).BeginInit();
@@ -163,13 +164,14 @@ partial class UpsertTodoForm
         // 
         // ActionButton
         // 
+        ActionButton.BackColor = Color.LightSkyBlue;
         ActionButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-        ActionButton.Location = new Point(36, 477);
+        ActionButton.Location = new Point(36, 528);
         ActionButton.Name = "ActionButton";
         ActionButton.Size = new Size(327, 43);
         ActionButton.TabIndex = 6;
         ActionButton.Text = "Stwórz";
-        ActionButton.UseVisualStyleBackColor = true;
+        ActionButton.UseVisualStyleBackColor = false;
         ActionButton.Click += ActionButton_Click;
         // 
         // PricePanel
@@ -222,11 +224,25 @@ partial class UpsertTodoForm
         AdditionalPanel.TabIndex = 14;
         AdditionalPanel.Visible = false;
         // 
-        // CreateTodoForm
+        // DeleteButton
+        // 
+        DeleteButton.BackColor = Color.LightCoral;
+        DeleteButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+        DeleteButton.Location = new Point(36, 475);
+        DeleteButton.Name = "DeleteButton";
+        DeleteButton.Size = new Size(327, 39);
+        DeleteButton.TabIndex = 16;
+        DeleteButton.Text = "Usuń";
+        DeleteButton.UseVisualStyleBackColor = false;
+        DeleteButton.Visible = false;
+        DeleteButton.Click += DeleteButton_Click;
+        // 
+        // UpsertTodoForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(412, 541);
+        ClientSize = new Size(412, 583);
+        Controls.Add(DeleteButton);
         Controls.Add(panel1);
         Controls.Add(AdditionalPanel);
         Controls.Add(label8);
@@ -238,7 +254,7 @@ partial class UpsertTodoForm
         Controls.Add(label2);
         Controls.Add(TitleLabel);
         Controls.Add(TodoTypeCombobox);
-        Name = "CreateTodoForm";
+        Name = "UpsertTodoForm";
         Text = "CreateTodoForm";
         panel1.ResumeLayout(false);
         panel1.PerformLayout();
@@ -270,4 +286,5 @@ partial class UpsertTodoForm
     private Label label6;
     private Label label8;
     private Panel AdditionalPanel;
+    private Button DeleteButton;
 }

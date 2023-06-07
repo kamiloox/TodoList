@@ -68,6 +68,10 @@ class TodoShopping : Todo, ITodoMethods<TodoShopping>
             todo.ProductPrice
         );
     }
+    static public void DeleteFromDb(string id)
+    {
+        DeleteFromDb(TableName, id);
+    }
 
     static public List<TodoShopping> GetAllFromDb()
     {
