@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             CreateTodoButton = new Button();
             label1 = new Label();
             ShowTodosButton = new Button();
@@ -66,10 +67,13 @@
             ShowTodosButton.TabIndex = 2;
             ShowTodosButton.Text = "Przeglądaj zadania";
             ShowTodosButton.UseVisualStyleBackColor = true;
+            ShowTodosButton.Click += ShowTodosButton_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.ajp_logo_2;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.InitialImage = null;
             pictureBox1.Location = new Point(113, 42);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 150);
@@ -77,7 +81,7 @@
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
-            // Form1
+            // MenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -86,7 +90,7 @@
             Controls.Add(ShowTodosButton);
             Controls.Add(label1);
             Controls.Add(CreateTodoButton);
-            Name = "Form1";
+            Name = "MenuForm";
             Text = "Zadaniownik";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

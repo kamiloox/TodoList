@@ -92,7 +92,7 @@ public partial class CreateTodoForm : Form
     public void ShowShoppingFields()
     {
         AdditionalPanel.Show();
-        AdditionalLabel.Text = "Nazwa przedmiotu";
+        AdditionalLabel.Text = "Nazwa produktu";
 
         PriceNumeric.Maximum = int.MaxValue;
         PricePanel.Show();

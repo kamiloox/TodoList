@@ -12,4 +12,10 @@ public partial class MenuForm : Form
         var createTodoForm = new CreateTodoForm();
         createTodoForm.Show();
     }
+
+    private void ShowTodosButton_Click(object sender, EventArgs e)
+    {
+        var allTodosForm = new AllTodosForm();
+        allTodosForm.Show();
+    }
 }
