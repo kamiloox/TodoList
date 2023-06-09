@@ -18,6 +18,7 @@ public partial class UpsertTodoForm : Form
         return (TodoType)TodoTypeCombobox.SelectedIndex;
     }
 
+    // Initialize Form that edits existing todo
     public UpsertTodoForm(string todoId, TodoType todoType, Action onSubmit)
     {
         OnSubmitFunction = onSubmit;
@@ -32,6 +33,17 @@ public partial class UpsertTodoForm : Form
         FillEditedTodo(todoId);
     }
 
+    // Initialize Form that creates a new todo
+    public UpsertTodoForm()
+    {
+        InitializeComponent();
+
+        AdjustToCreateForm();
+
+        ShowFieldsForSelectedTodoType();
+    }
+
+    // Adjust form components to make editing possible
     private void AdjustToEditForm(TodoType todoType)
     {
         Text = "Edytuj zadanie";
@@ -47,15 +59,6 @@ public partial class UpsertTodoForm : Form
         DeleteButton.Visible = true;
     }
 
-    public UpsertTodoForm()
-    {
-        InitializeComponent();
-
-        AdjustToCreateForm();
-
-        ShowFieldsForSelectedTodoType();
-    }
-
     private void AdjustToCreateForm()
     {
         FormType = FormType.CREATE;
@@ -67,12 +70,14 @@ public partial class UpsertTodoForm : Form
         TodoTypeCombobox.SelectedIndex = (int)TodoType.SHOPPING;
     }
 
+    // Fill fields for both edit and create
     private void FillCommonFields(Todo todo)
     {
         TodoTitleTextbox.Text = todo.Title;
         TodoCompletedRadio.Checked = todo.Completed;
     }
 
+    // Takes a todo and fills form components with saved values in database
     private void FillEditedTodo(string todoId)
     {
         switch (GetSelectedTodoType())
@@ -120,7 +125,7 @@ public partial class UpsertTodoForm : Form
 
             }
         }
-        else
+        else if (FormType == FormType.EDIT)
         {
             try
             {
@@ -139,8 +144,13 @@ public partial class UpsertTodoForm : Form
                 MessageBox.Show("Nieoczekiwany błąd. Edycja zadania się nie powiodła, spróbuj jeszcze raz");
             }
         }
+        else
+        {
+            MessageBox.Show("Nieoczekiwany błąd. Operacja nie powiodła się, spróbuj jeszcze raz");
+        }
     }
 
+    // Takes values that user passed and update existing todo with given `TodoId`
     private void EditTodo()
     {
         var title = TodoTitleTextbox.Text;
@@ -181,6 +191,7 @@ public partial class UpsertTodoForm : Form
         }
     }
 
+    // Create new todo in database
     private void CreateTodo()
     {
         var title = TodoTitleTextbox.Text;
@@ -215,6 +226,7 @@ public partial class UpsertTodoForm : Form
         MessageBox.Show($"Stworzono zadanie\n\n{info}");
     }
 
+    // Shows different components according to selected TodoType
     private void ShowFieldsForSelectedTodoType()
     {
         AdditionalPanel.Hide();
@@ -258,6 +270,7 @@ public partial class UpsertTodoForm : Form
         AdditionalLabel.Text = "Nazwa przedmiotu";
     }
 
+    // Delete Todo from DB
     private void DeleteTodo()
     {
         if (TodoId is null)

@@ -69,6 +69,10 @@ class Todo
         var keys = string.Join(", ", allFields.Keys);
         var values = string.Join(", ", allFields.Keys.Select((key) => $"@{key}"));
 
+        /*
+         * Example prepared query
+         * INSERT INTO Table(Id, Title) VALUES(@Id, @Title);
+         */
         var query = $@"
             INSERT INTO {tableName}({keys}) 
             VALUES({values})
@@ -86,8 +90,10 @@ class Todo
             { "Completed", Completed },
         };
 
+        // Merge two lists together - fields (passed by user) and allFields 
         fields.ToList().ForEach(field => allFields.Add(field.Key, field.Value));
 
+        // Created with shorthand initialization
         List<string> parsed = new();
 
         foreach (var field in allFields)
@@ -95,6 +101,10 @@ class Todo
             parsed.Add($"{field.Key} = @{field.Key}");
         }
 
+        /*
+         * Example prepared query
+         * UPDATE Table SET VALUE_1 = @Value_1, VALUE_2 = @Value_2 WHERE Id = @id
+         */
         var query = $@"
             UPDATE {tableName} SET 
             {string.Join(",", parsed)}
@@ -104,6 +114,7 @@ class Todo
         Database.Action((connection) => connection.Execute(query, allFields));
     }
 
+    // Make it static so that existing Todo object can be retrieved from database
     static protected TodoModel? GetFromDb<TodoModel>(string id, string tableName)
     {
         var query = $"SELECT * FROM {tableName} WHERE Id = @id";
@@ -113,6 +124,7 @@ class Todo
         return Database.Action((connection) => connection.QueryFirstOrDefault<TodoModel>(query, parameters));
     }
 
+    // Similar to GetFromDb but can query every Todo based on type
     static protected List<TodoModel> GetAllFromDb<TodoModel>(string tableName)
     {
         var query = $"SELECT * FROM {tableName}";

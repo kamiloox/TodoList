@@ -6,6 +6,9 @@ class TodoWork : Todo, ITodoMethods<TodoWork>
 {
     static readonly string TableName = "TodosWork";
 
+    /*
+     * Company for which Todo needs to be done
+     */
     public string Company;
 
     private TodoWork(

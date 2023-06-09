@@ -60,6 +60,7 @@ class TodoSchool : Todo, ITodoMethods<TodoSchool>
             todo.Subject
         );
     }
+
     static public void DeleteFromDb(string id)
     {
         DeleteFromDb(TableName, id);

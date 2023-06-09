@@ -15,7 +15,7 @@ public partial class AllTodosForm : Form
         TodosListView.Columns.AddRange(new ColumnHeader[] { IdColumn, TitleColumn, CompletedColumn });
     }
 
-    private ListViewItem GetCommonViewItem(Todo todo)
+    static private ListViewItem GetCommonViewItem(Todo todo)
     {
         var item = new ListViewItem(todo.Id);
 

@@ -7,7 +7,7 @@ public partial class MenuForm : Form
         InitializeComponent();
     }
 
-    public void CreateTodoButton_Click(object sender, EventArgs e)
+    private void CreateTodoButton_Click(object sender, EventArgs e)
     {
         var createTodoForm = new UpsertTodoForm();
         createTodoForm.Show();
